@@ -22056,4 +22056,108 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Electric",
 		contestType: "Cool",
 	},
+	ruminate: {
+		num: 5000,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Ruminate",
+		pp: 10,
+		priority: 0,
+		flags: { charge: 1, nonsky: 1, nosleeptalk: 1, failinstruct: 1 },
+		onTryMove(attacker, defender, move) {
+		  if (attacker.removeVolatile(move.id)) {
+			return;
+		  }
+		  this.add("-prepare", attacker, move.name);
+		  if (!this.runEvent("ChargeMove", attacker, defender, move)) {
+			return;
+		  }
+		  attacker.addVolatile("twoturnmove", defender);
+		  if (attacker.hasAbility("neuronalactivation")) {
+			attacker.addVolatile("neuronalactivation")
+		  }
+		  return null;
+		},
+		boosts: {
+		  spa: 2,
+		  spd: 2,
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+		contestType: "Clever"
+	},
+	ragingwinds: {
+		num: 5003,
+		accuracy: 100,
+		basePower: 100,
+		category: "Special",
+		name: "Raging Winds",
+		pp: 5,
+		priority: 0,
+		flags: { protect: 1, mirror: 1 },
+		secondary: null,
+		onHit() {
+		  this.sides.forEach(side => {
+			side.pokemon.forEach(pokemon => {
+			  pokemon.addVolatile("confusion");
+			});
+		  });
+		},
+		target: "normal",
+		type: "Iair",
+		contestType: "Tough"
+	},
+	oddglow: {
+		num: 5002,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		name: "Odd Glow",
+		pp: 5,
+		priority: 0,
+		flags: { snatch: 1 },
+		secondary: null,
+		onHit(pokemon) {
+		  const stages = this.prng.next(3) + 1;
+		  var boost;
+		  switch (this.prng.next(5)) {
+			case 0:
+			  boost = { atk: stages };
+			  break;
+			case 1:
+			  boost = { def: stages };
+			  break;
+			case 2:
+			  boost = { spa: stages };
+			  break;
+			case 3:
+			  boost = { spd: stages };
+			  break;
+			case 4:
+			  boost = { spe: stages };
+			default:
+			  boost = { }
+		  }
+		  this.boost(boost, pokemon, pokemon, null, false, true);
+		},
+		target: "self",
+		type: "Ilight",
+		contestType: "Beauty"
+	},
+	loudscream: {
+		num: 5001,
+		accuracy: 100,
+		basePower: 40,
+		category: "Physical",
+		name: "Loud Scream",
+		pp: 35,
+		priority: 0,
+		flags: { protect: 1, mirror: 1 },
+		secondary: null,
+		target: "normal",
+		type: "Isound",
+		contestType: "Tough"
+	},
 };
