@@ -1,6 +1,35 @@
 export const TypeChart: {[k: string]: TypeData} = {
+	iair: {
+		damageTaken: {
+		  Iair: 3,
+		  Bug: 0,
+		  Dark: 0,
+		  Dragon: 0,
+		  Electric: 0,
+		  Fairy: 0,
+		  Fighting: 0,
+		  Fire: 0,
+		  Flying: 1,
+		  Ghost: 0,
+		  Grass: 0,
+		  Ground: 0,
+		  Ice: 0,
+		  Ilight: 1,
+		  Normal: 0,
+		  Poison: 0,
+		  Psychic: 0,
+		  Rock: 3,
+		  Isound: 2,
+		  Steel: 0,
+		  Stellar: 0,
+		  Water: 0
+		}
+	},
 	bug: {
 		damageTaken: {
+			Isound: 0,
+      		Ilight: 0,
+      		Iair: 2,
 			Bug: 0,
 			Dark: 0,
 			Dragon: 0,
@@ -26,6 +55,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	dark: {
 		damageTaken: {
+			Isound: 0,
+      		Ilight: 1,
+      		Iair: 0,
 			prankster: 3,
 			Bug: 1,
 			Dark: 2,
@@ -51,6 +83,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	dragon: {
 		damageTaken: {
+			Isound: 0,
+      		Ilight: 0,
+      		Iair: 0,
 			Bug: 0,
 			Dark: 0,
 			Dragon: 1,
@@ -76,6 +111,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	electric: {
 		damageTaken: {
+			Isound: 1,
+      		Ilight: 0,
+      		Iair: 0,
 			par: 3,
 			Bug: 0,
 			Dark: 0,
@@ -102,6 +140,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	fairy: {
 		damageTaken: {
+			Isound: 1,
+      		Ilight: 0,
+      		Iair: 0,
 			Bug: 2,
 			Dark: 2,
 			Dragon: 3,
@@ -125,6 +166,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	fighting: {
 		damageTaken: {
+			Isound: 2,
+      		Ilight: 0,
+      		Iair: 0,
 			Bug: 2,
 			Dark: 2,
 			Dragon: 0,
@@ -150,6 +194,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	fire: {
 		damageTaken: {
+			Isound: 0,
+      		Ilight: 2,
+      		Iair: 0,
 			brn: 3,
 			Bug: 2,
 			Dark: 0,
@@ -176,6 +223,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	flying: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 0,
+			Iair: 2,
 			Bug: 2,
 			Dark: 0,
 			Dragon: 0,
@@ -201,6 +251,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	ghost: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 1,
+			Iair: 0,
 			trapped: 3,
 			Bug: 2,
 			Dark: 1,
@@ -227,6 +280,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	grass: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 2,
+			Iair: 0,
 			powder: 3,
 			Bug: 1,
 			Dark: 0,
@@ -253,6 +309,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	ground: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 0,
+			Iair: 0,
 			sandstorm: 3,
 			Bug: 0,
 			Dark: 0,
@@ -279,6 +338,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	ice: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 0,
+			Iair: 0,
 			hail: 3,
 			frz: 3,
 			Bug: 0,
@@ -304,8 +366,37 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {atk: 30, def: 30},
 		HPdvs: {def: 13},
 	},
+	ilight: {
+		damageTaken: {
+		  Iair: 2,
+		  Bug: 0,
+		  Dark: 1,
+		  Dragon: 0,
+		  Electric: 0,
+		  Fairy: 0,
+		  Fighting: 0,
+		  Fire: 0,
+		  Flying: 0,
+		  Ghost: 3,
+		  Grass: 0,
+		  Ground: 0,
+		  Ice: 0,
+		  Ilight: 3,
+		  Normal: 0,
+		  Poison: 0,
+		  Psychic: 0,
+		  Rock: 0,
+		  Isound: 1,
+		  Steel: 0,
+		  Stellar: 0,
+		  Water: 0
+		}
+	},
 	normal: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 0,
+			Iair: 0,
 			Bug: 0,
 			Dark: 0,
 			Dragon: 0,
@@ -329,6 +420,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	poison: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 0,
+			Iair: 0,
 			psn: 3,
 			tox: 3,
 			Bug: 2,
@@ -356,6 +450,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	psychic: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 0,
+			Iair: 0,
 			Bug: 1,
 			Dark: 1,
 			Dragon: 0,
@@ -381,6 +478,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	rock: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 0,
+			Iair: 1,
 			sandstorm: 3,
 			Bug: 0,
 			Dark: 0,
@@ -405,8 +505,37 @@ export const TypeChart: {[k: string]: TypeData} = {
 		HPivs: {def: 30, spd: 30, spe: 30},
 		HPdvs: {atk: 13, def: 12},
 	},
+	isound: {
+		damageTaken: {
+		  Iair: 1,
+		  Bug: 0,
+		  Dark: 0,
+		  Dragon: 0,
+		  Electric: 0,
+		  Fairy: 3,
+		  Fighting: 1,
+		  Fire: 0,
+		  Flying: 0,
+		  Ghost: 0,
+		  Grass: 0,
+		  Ground: 0,
+		  Ice: 0,
+		  Ilight: 2,
+		  Normal: 0,
+		  Poison: 0,
+		  Psychic: 0,
+		  Rock: 0,
+		  Isound: 3,
+		  Steel: 0,
+		  Stellar: 0,
+		  Water: 0
+		}
+	},
 	steel: {
 		damageTaken: {
+			 Isound: 2,
+			Ilight: 0,
+			Iair: 0,
 			psn: 3,
 			tox: 3,
 			sandstorm: 3,
@@ -435,6 +564,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	stellar: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 0,
+			Iair: 0,
 			Bug: 0,
 			Dark: 0,
 			Dragon: 0,
@@ -458,6 +590,9 @@ export const TypeChart: {[k: string]: TypeData} = {
 	},
 	water: {
 		damageTaken: {
+			Isound: 0,
+			Ilight: 0,
+			Iair: 1,
 			Bug: 0,
 			Dark: 0,
 			Dragon: 0,
