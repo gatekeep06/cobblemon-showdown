@@ -5685,5 +5685,54 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Neuronal Activation",
 		rating: 3.5,
 		num: 2000
+	},
+	amplifier: {
+		onBasePowerPriority: 7,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.type === "Isound") {
+				this.debug('Amplifier boost');
+				return this.chainModify([5325, 4096]);
+			}
+		},
+		flags: {breakable: 1},
+		name: "Amplifier",
+		rating: 3.5,
+		num: 2001,
+	},
+	baitedline: {
+		onFoeTrapPokemon(pokemon) {
+			if (pokemon.hasType('Water') && pokemon.isAdjacent(this.effectState.target)) {
+				pokemon.tryTrap(true);
+			}
+		},
+		onFoeMaybeTrapPokemon(pokemon, source) {
+			if (!source) source = this.effectState.target;
+			if (!source || !pokemon.isAdjacent(source)) return;
+			if (!pokemon.knownType || pokemon.hasType('Water')) {
+				pokemon.maybeTrapped = true;
+			}
+		},
+		flags: {},
+		name: "Baited Line",
+		rating: 4,
+		num: 2002,
+	},
+	blademaster: {
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.flags['slicing']) {
+				this.debug('Blademaster boost');
+				return this.chainModify(1.2);
+			}
+		},
+		onModifyCritRatio(relayVar, source, target, move) {
+			if (move.flags['slicing']) {
+				return relayVar + 1;
+			}
+		},
+		flags: {},
+		name: "Blademaster",
+		rating: 3.5,
+		num: 2003,
 	}
 };
