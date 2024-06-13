@@ -5694,7 +5694,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				return this.chainModify([5325, 4096]);
 			}
 		},
-		flags: {breakable: 1},
+		flags: { breakable: 1 },
 		name: "Amplifier",
 		rating: 3.5,
 		num: 2001,
@@ -5734,5 +5734,112 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		name: "Blademaster",
 		rating: 3.5,
 		num: 2003,
+	},
+	crystaljaw: {
+		onModifyMove(move, pokemon, target) {
+			if (move.flags['bite']) {
+				move.overrideOffensiveStat = 'spa';
+			}
+		},
+		onBasePowerPriority: 19,
+		onBasePower(relayVar, source, target, move) {
+			if (move.flags['bite']) {
+				this.debug('Crystal Kaw boost');
+				return this.chainModify(1.3);
+			}
+		},
+		flags: { breakable: 1 },
+		name: "Crystal Jaw",
+		rating: 3.5,
+		num: 2004
+	},
+	fervor: {
+		onStart(target) {
+			target.addVolatile("fervor");
+		},
+		condition: {
+			noCopy: true,
+			onSourceDamagingHit(damage, target, source, move) {
+				if (this.checkMoveMakesContact(move, source, target)) {
+					this.boost({ spe: 1 }, source);
+					source.removeVolatile("fervor");
+				}
+			},
+		},
+		flags: {},
+		name: "Fervor",
+		rating: 2,
+		num: 2005
+	},
+	grimtears: {
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.adjacentFoes()) {
+				if (!activated) {
+					this.add('-ability', pokemon, 'Grim Tears', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({ spa: -1 }, target, pokemon, null, true);
+				}
+			}
+		},
+		flags: {},
+		name: "Grim Tears",
+		rating: 3.5,
+		num: 2006
+	},
+	healingsun: {
+		onWeather(target, source, effect) {
+			if (target.hasItem("utilityumbrella")) return;
+			if (effect.id === "sunnyday") {
+				this.heal(target.baseMaxhp / 16);
+			}
+			else if (effect.id === "desolateland") {
+				this.heal(target.baseMaxhp / 10);
+			}
+		},
+		flags: {},
+		name: "Healing Sun",
+		rating: 2,
+		num: 2007
+	},
+	junglefury: {
+		onModifyCritRatio(relayVar, source, target, move) {
+			if (this.field.isTerrain("grassyterrain")) {
+				return relayVar + 2;
+			}
+		},
+		flags: { breakable: 1 },
+		name: "Jungle Fury",
+		rating: 0.5,
+		num: 2008
+	},
+	microstrike: {
+		onModifyDamage(relayVar, source, target, move) {
+			if (source.weighthg < target.weighthg) {
+				return this.chainModify(1.3);
+			}
+		},
+		flags: {},
+		name: "Micro Strike",
+		rating: 2,
+		num: 2009
+	},
+	seance: {
+		onAnyFaint(target) {
+			if (!this.effectState.target.hp) return;
+			const ability = target.getAbility();
+			if (ability.flags['noreceiver'] || ability.id === 'noability') return;
+			if (this.effectState.target.setAbility(ability)) {
+				this.add('-ability', this.effectState.target, ability, '[from] ability: Seance', '[of] ' + target);
+			}
+		},
+		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1},
+		name: "Seance",
+		rating: 0,
+		num: 2010,
 	}
 };
